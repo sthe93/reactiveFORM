@@ -1,14 +1,74 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+      <ion-title>
+         User Registration
+      </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <form [formGroup]="userFG" (ngSubmit)="formSubmit(userFG)">
+
+      <ion-list>
+                <ion-item>
+                    <ion-label floating>Name</ion-label>
+                    <ion-input formControlName="name" type="text"></ion-input>
+                </ion-item>
+                <ion-item no-lines *ngIf="userFG.controls['name'].invalid">
+                    <p ion-text color="danger">Please Provide a valid Name</p>
+                </ion-item>
+
+
+          <ion-item>
+
+              <ion-label floating>Username</ion-label>
+              <ion-input formControlName="username" type="text"></ion-input>
+          </ion-item>
+          <ion-item no-lines *ngIf="userFG.controls['username'].invalid">
+              <p ion-text color="danger">Please Provide a valid UserName</p>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input formControlName="email" type="text"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="userFG.controls['email'].invalid">
+            <p ion-text color="danger">Please Provide a valid Email</p>
+        </ion-item>
+
+          <ion-item>
+              <ion-label floating>password</ion-label>
+              <ion-input formControlName="password" type="password"></ion-input>
+          </ion-item>
+        <ion-item no-lines *ngIf="userFG.controls['password'].invalid">
+            <p ion-text color="danger">Provide a valid password</p>
+        </ion-item>
+        
+
+        <div formGroupName="skills" >
+
+                <button ion-button  type="submit">add</button>
+
+                <ion-item>
+                        <ion-label stacked>Type</ion-label>
+                        <ion-input formControlName="type" type="text"></ion-input>
+                    </ion-item>
+                <ion-item>
+                    <ion-label stacked>level</ion-label>
+                    <ion-input formControlName="level" type="number"></ion-input>
+                </ion-item>
+                
+
+               
+            </div>
+
+
+
+      </ion-list>
+      <button full ion-button [disabled]="userFG.invalid" type="submit">Save</button>
+
+
+  </form>
+
 </ion-content>
